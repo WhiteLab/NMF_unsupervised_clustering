@@ -50,4 +50,4 @@ if __name__=='__main__':
 	inputH, clusters=initializeCentroids(inputMatrix=args.matrixFile, k=args.kclusters);
 	
 	for i in range(0, args.kclusters):	
-		clusters=calcEuclideanDist(inputH, clusters);
+		clusters=calcEuclideanDist(inputH, clusters)

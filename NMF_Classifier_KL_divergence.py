@@ -146,8 +146,8 @@ def matrix_visualization(W, H, yAxisNames, xAxisNames):
             plt.savefig(
                 str(visPath) + 'KLdiv_matrixH_visualization_k=' + str(args.kclusters) + '_' + str(uniqueName) + '.png')
 
-    matrix_W();
-    matrix_H();
+    matrix_W()
+    matrix_H()
 
 
 if __name__ == '__main__':
@@ -175,32 +175,32 @@ if __name__ == '__main__':
     statPath = str(args.outPath) + 'statistics/'
 
     # if output directory does not exist yet, create it
-    if os.path.isdir(wPath) == False:
+    if os.path.isdir(wPath) is False:
         os.mkdir(wPath)
-    if os.path.isdir(hPath) == False:
+    if os.path.isdir(hPath) is False:
         os.mkdir(hPath)
-    if os.path.isdir(vPath) == False:
+    if os.path.isdir(vPath) is False:
         os.mkdir(vPath)
-    if os.path.isdir(visPath) == False:
+    if os.path.isdir(visPath) is False:
         os.mkdir(visPath)
-    if os.path.isdir(statPath) == False:
+    if os.path.isdir(statPath) is False:
         os.mkdir(statPath)
 
     uniqueName = strftime("%Y-%m-%d_%H:%M:%S", gmtime())
-    observed, predicted, k, nrows, mcols, W, H = matrixInitialization(inputMatrix=args.matrixFile, k=args.kclusters);
+    observed, predicted, k, nrows, mcols, W, H = matrixInitialization(inputMatrix=args.matrixFile, k=args.kclusters)
 
     qualityApprox = []
     iterConverge = []
     for i in range(0, args.iterations):
-        W, predicted = updateW(observed, predicted, k, nrows, mcols, W, H);
-        H, predicted = updateH(observed, predicted, k, nrows, mcols, W, H);
+        W, predicted = updateW(observed, predicted, k, nrows, mcols, W, H)
+        H, predicted = updateH(observed, predicted, k, nrows, mcols, W, H)
         KL_divergence = costFunction(observed, predicted)
         qualityApprox.append(KL_divergence)
         iterConverge.append(i)
 
     # calls to make visualizations
-    if args.makePlot == True:
-        visualizeConvergenceAccuracy(qualityApprox, iterConverge);
+    if args.makePlot is True:
+        visualizeConvergenceAccuracy(qualityApprox, iterConverge)
         matrix_visualization(W, H, yAxisNames=args.rowNames, xAxisNames=args.colNames)
 
     # creates a file with run statistics

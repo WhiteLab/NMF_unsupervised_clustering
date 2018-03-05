@@ -1,5 +1,5 @@
 # NMF_unsupervised_clustering
-
+Adapted from Dr. Tonya Brunetti's Repository (https://github.com/tbrunetti/NMF_unsupervised_clustering) for use with an HPC
 All the files and scripts in this directory are made to cluster data using NMF and unsupervised learning techniques.  Each module/script is fully functional by itself, however, for convenience and work flow, a BASH script has been provided to streamline all the modules together in one call.
 
 #### Dependencies
