@@ -103,7 +103,7 @@ echo $metric
 for i in $( seq 1 $numRuns);
 do
 	echo "Executing run number "$i
-	sbatch -c $cores --mem=$mem -J "NMF_run_"$i --export=m="$metric" $spath'1a_run_NMF.sl';
+	sbatch -c $cores --mem=$mem -J "NMF_run_"$i -o "NMF_run_"$i".log" --export=m="$metric" $spath'1a_run_NMF.sl';
 done
 
 
