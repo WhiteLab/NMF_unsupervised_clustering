@@ -1,6 +1,7 @@
 import argparse
 import os
-
+from matplotlib import use
+use('Agg')
 import matplotlib.pyplot as plt
 import numpy as np
 
