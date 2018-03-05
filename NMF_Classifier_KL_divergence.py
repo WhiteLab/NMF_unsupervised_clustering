@@ -2,9 +2,9 @@ import argparse
 import os
 from time import gmtime, strftime
 
-import matplotlib.pyplot as plt
 from matplotlib import use
 use('Agg')
+import matplotlib.pyplot as plt
 import numpy as np
 
 
