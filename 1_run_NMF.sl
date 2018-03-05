@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 
-#SBATCH -c 8
-#SBATCH --mem 4G
 export PATH=/cephfs/users/mbrown/PIPELINES/TOOLS/miniconda3/bin:$PATH
 source activate nmf_conda
+
+cores=$c
+mem=$mem
 matrixFile=$m
 
 outputDirectory=$o  #optional, comment out if not needed
@@ -37,9 +38,9 @@ spath=$p
 #determine which classifier to use
 if [ $metric = "Euc" ]
 then
-	metric='python '$p'/NMF_Classifier_EucDist.py -input '$matrixFile
+	metric='python '$spath'/NMF_Classifier_EucDist.py -input '$matrixFile
 else
-	metric='python '$p'/NMF_Classifier_KL_divergence.py -input '$matrixFile
+	metric='python '$spath'/NMF_Classifier_KL_divergence.py -input '$matrixFile
 fi
 
 
@@ -102,45 +103,8 @@ echo $metric
 for i in $( seq 1 $numRuns);
 do
 	echo "Executing run number "$i
-	$metric;
+	sbatch -c $cores --mem=$mem -J "NMF_run_"$i export=m="$metric" $spath'1a_run_NMF.sl';
 done
 
 
-
-
-
-
-
-connectivityParams=''
-#sets output directory for results
-if [[ -v outputDirectory ]]
-then
-        connectivityParams+=" --output "$outputDirectory
-else
-        echo "variable 'outputDirectory' is set to defaults of classifier"
-fi
-
-#sets sample names for matrix
-if [[ -v colNames ]]
-then
-        connectivityParams+=" --colNames "$colNames
-else
-        echo "variable 'colNames' is set to defaults of classifier"
-fi
-
-#run connectivity
-filesToRun=$outputDirectory'matrixH/*'
-echo $filesToRun
-for matrices in $filesToRun;
-do
-	echo "Building connectivity matrix for "$matrices
-	
-	python $p/connectivity_matrix.py -input $matrices$connectivityParams
-done
-
-
-
-#run consensus matrix
-echo "Running consensus matrix..."
-python $p/consensus_matrix.py -input $outputDirectory/connectivity_matrix/paths_to_connectivity_matrices_to_analyze.txt$connectivityParams
 
