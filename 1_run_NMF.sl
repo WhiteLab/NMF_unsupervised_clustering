@@ -100,10 +100,12 @@ fi
 
 #run NMF
 echo $metric
+# added in sleep to keep jobs from running into each other
 for i in $( seq 1 $numRuns);
 do
 	echo "Executing run number "$i
 	sbatch -c $cores --mem=$mem -J "NMF_run_"$i -o "NMF_run_"$i".log" --export=m="$metric" $spath'/1a_run_NMF.sl';
+	sleep 1
 done
 
 
