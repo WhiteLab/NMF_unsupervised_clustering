@@ -12,13 +12,13 @@ outputDirectory=$o  #optional, comment out if not needed
 metric='KL'
 
 #the number of individual runs (i.e. number of times to perform NMF on the same input data)
-numRuns=100
+numRuns=10
 
 #pick 'connectivity' or 'k-means'
 clusterType='connectivity'
 
 #number of iterations for convergence (optional, comment out if not needed)
-iterations=100
+iterations=10
 
 #number of desired clusters (optional, comment out if not needed)
 clusters=3
@@ -135,12 +135,12 @@ for matrices in $filesToRun;
 do
 	echo "Building connectivity matrix for "$matrices
 	
-	python $p/"connectivity_matrix.py -input "$matrices$connectivityParams
+	python $p/connectivity_matrix.py -input $matrices$connectivityParams
 done
 
 
 
 #run consensus matrix
 echo "Running consensus matrix..."
-python $p"/consensus_matrix.py -input "$outputDirectory"/connectivity_matrix/paths_to_connectivity_matrices_to_analyze.txt"$connectivityParams
+python $p/consensus_matrix.py -input $outputDirectory/connectivity_matrix/paths_to_connectivity_matrices_to_analyze.txt$connectivityParams
 
