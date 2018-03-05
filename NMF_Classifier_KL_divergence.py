@@ -175,6 +175,8 @@ if __name__ == '__main__':
     statPath = str(args.outPath) + 'statistics/'
 
     # if output directory does not exist yet, create it
+    if not os.path.isdir(args.outPath):
+        os.mkdir(args.outPath)
     if os.path.isdir(wPath) is False:
         os.mkdir(wPath)
     if os.path.isdir(hPath) is False:

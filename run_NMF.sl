@@ -12,13 +12,13 @@ outputDirectory=$o  #optional, comment out if not needed
 metric='KL'
 
 #the number of individual runs (i.e. number of times to perform NMF on the same input data)
-numRuns=10
+numRuns=$runs
 
 #pick 'connectivity' or 'k-means'
 clusterType='connectivity'
 
 #number of iterations for convergence (optional, comment out if not needed)
-iterations=10
+iterations=$iter
 
 #number of desired clusters (optional, comment out if not needed)
 clusters=3
