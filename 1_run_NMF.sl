@@ -3,7 +3,7 @@
 export PATH=/cephfs/users/mbrown/PIPELINES/TOOLS/miniconda3/bin:$PATH
 source activate nmf_conda
 
-cores=$c
+cores=$cpu
 mem=$mem
 matrixFile=$m
 
