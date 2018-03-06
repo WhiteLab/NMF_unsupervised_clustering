@@ -37,6 +37,5 @@ do
 	echo "Building connectivity matrix for "$matrices
     sbatch -c $cores --mem=$mem -J "connectivity_run_"$n"_"$numFiles -o "connectivity_run_"$n"_"$numFiles".log" --export=m="$matrices",connParams="$connectivityParams",p="$spath" $spath'/2a_run_connectivity.sl';
     ((n++))
-	sleep 2
 done
 
