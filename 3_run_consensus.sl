@@ -12,4 +12,4 @@ connectivityParams=`cat $outputDirectory'conn_params.txt'`
 
 #run consensus matrix
 echo "Running consensus matrix..."
-python $spath/consensus_matrix.py -input $outputDirectory/connectivity_matrix/paths_to_connectivity_matrices_to_analyze.txt$connectivityParams
+python $spath/consensus_matrix.py -input $outputDirectory/connectivity_matrix/paths_to_connectivity_matrices_to_analyze.txt $connectivityParams

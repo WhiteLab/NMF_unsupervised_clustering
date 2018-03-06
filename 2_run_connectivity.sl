@@ -34,6 +34,6 @@ for matrices in $filesToRun;
 do
 	echo "Building connectivity matrix for "$matrices
     sbatch -c $cores --mem=$mem -J "connectivity_run" --export=m="$matrices",connParams="$connectivityParams",p="$spath" $spath'/2a_run_connectivity.sl';
-	sleep 1
+	sleep 2
 done
 
