@@ -72,23 +72,27 @@ def visualizeConsensus(consensusMat, connectivityMatrices, clusters, colNames, s
         # clusters by columns and rows and annotates probablility a particular sample clusters together
         # cluster distance is meausred by average Euclidean Distance in seaborn for hierarchical clustering
         consensusClustered = sns.clustermap(dataframe, col_cluster=True, row_cluster=True, annot=True, rasterized=True)
-        # consensusClustered.data.to_csv(str(matrixPath + 'consensus_matrix_table_clustered.txt'), sep="\t")
-        consensusClustered_non_annt = sns.clustermap(dataframe, col_cluster=True, row_cluster=True, annot=False, rasterized=True)
-        ax = consensusClustered_non_annt.ax_heatmap
+        ax = consensusClustered.ax_heatmap
         xaxis = []
-        for ind in consensusClustered_non_annt.dendrogram_col.reordered_ind:
+        for ind in consensusClustered.dendrogram_col.reordered_ind:
             xaxis.append(sampleNames[ind])
         ax.set_xticklabels(xaxis, rotation=90)
         yaxis = []
+        for ind in consensusClustered.dendrogram_row.reordered_ind:
+            yaxis.append(sampleNames[ind])
+        ax.set_yticklabels(yaxis, rotation=0)
+        # consensusClustered.data.to_csv(str(matrixPath + 'consensus_matrix_table_clustered.txt'), sep="\t")
+        consensusClustered_non_annt = sns.clustermap(dataframe, col_cluster=True, row_cluster=True, annot=False, rasterized=True)
+        axNA = consensusClustered_non_annt.ax_heatmap
+        xaxis = []
+        for ind in consensusClustered_non_annt.dendrogram_col.reordered_ind:
+            xaxis.append(sampleNames[ind])
+        axNA.set_xticklabels(xaxis, rotation=90)
+        yaxis = []
         for ind in consensusClustered_non_annt.dendrogram_row.reordered_ind:
             yaxis.append(sampleNames[ind])
-        yaxis.reverse()
-        ax.set_yticklabels(yaxis, rotation=0)
+        axNA.set_yticklabels(yaxis, rotation=0)
 
-        # plt.setp(consensusClustered.ax_heatmap.yaxis.get_majorticklabels(), rotation=0, )
-        # plt.setp(consensusClustered_non_annt.ax_heatmap.yaxis.get_majorticklabels(), rotation=0)
-        # plt.setp(consensusClustered.ax_heatmap.xaxis.get_majorticklabels(), rotation=90)
-        # plt.setp(consensusClustered_non_annt.ax_heatmap.xaxis.get_majorticklabels(), rotation=90)
         consensusClustered.savefig(
             str(matrixPath) + 'consensus_Matrix_over_' + str(len(connectivityMatrices)) + '_runs_at_k=' + str(
                 clusters) + '.' + suffix)
