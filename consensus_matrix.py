@@ -46,7 +46,7 @@ def buildConsensus(connectivityMatrices, consensusMat):
     return consensusMat
 
 
-def visualizeConsensus(consensusMat, connectivityMatrices, clusters, colNames):
+def visualizeConsensus(consensusMat, connectivityMatrices, clusters, colNames, suffix):
     if colNames == 'noXLabels':
         # put concensus matrix into dataframe to build hierarchical clustermap
         dataframe = pd.DataFrame(data=consensusMat)
@@ -55,7 +55,7 @@ def visualizeConsensus(consensusMat, connectivityMatrices, clusters, colNames):
         consensusClustered = sns.clustermap(dataframe, col_cluster=True, row_cluster=True, annot=True)
         consensusClustered.savefig(
             str(matrixPath) + 'consensus_Matrix_over_' + str(len(connectivityMatrices)) + '_runs_at_k=' + str(
-                clusters) + '.png')
+                clusters) + '.' + suffix)
 
     else:
         # assigns sample names to consensus matrix
@@ -75,9 +75,9 @@ def visualizeConsensus(consensusMat, connectivityMatrices, clusters, colNames):
         plt.setp(consensusClustered_non_annt.ax_heatmap.xaxis.get_majorticklabels(), rotation=90)
         consensusClustered.savefig(
             str(matrixPath) + 'consensus_Matrix_over_' + str(len(connectivityMatrices)) + '_runs_at_k=' + str(
-                clusters) + '.png')
+                clusters) + '.' + suffix)
         consensusClustered_non_annt.savefig(str(matrixPath) + 'non_annotated_consensus_Matrix_over_' + str(
-            len(connectivityMatrices)) + '_runs_at_k=' + str(clusters) + '.png')
+            len(connectivityMatrices)) + '_runs_at_k=' + str(clusters) + '.' + suffix)
 
 
 if __name__ == '__main__':
@@ -85,6 +85,8 @@ if __name__ == '__main__':
     parser.add_argument('-input', required=True, dest='listOfMatrices', help='List of connectivity matrices')
     parser.add_argument('--colNames', default='noXLabels', dest='colNames', type=str)
     parser.add_argument('--output', default=os.getcwd(), dest='outPath', type=str, help='full path to output directory')
+    parser.add_argument('--suffix', default=os.getcwd(), dest='suffix', type=str, help='Viz output format, like png, '
+                                                                                       'pdf, jpeg, eps')
     args = parser.parse_args()
 
     # path to output directories
@@ -96,4 +98,4 @@ if __name__ == '__main__':
 
     connectivityMatrices, consensusMat, clusters = readMatrices(inputFile=args.listOfMatrices)
     consensusMat = buildConsensus(connectivityMatrices, consensusMat)
-    visualizeConsensus(consensusMat, connectivityMatrices, clusters, colNames=args.colNames)
+    visualizeConsensus(consensusMat, connectivityMatrices, clusters, colNames=args.colNames, suffix=args.suffix)
