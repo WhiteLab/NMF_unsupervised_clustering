@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import seaborn as sns
+import sys
 
 
 def readMatrices(inputFile):
@@ -70,6 +71,7 @@ def visualizeConsensus(consensusMat, connectivityMatrices, clusters, colNames, s
         # clusters by columns and rows and annotates probablility a particular sample clusters together
         # cluster distance is meausred by average Euclidean Distance in seaborn for hierarchical clustering
         consensusClustered = sns.clustermap(dataframe, col_cluster=True, row_cluster=True, annot=True)
+        sys.stdout.write(consensusClustered.data)
         consensusClustered_non_annt = sns.clustermap(dataframe, col_cluster=True, row_cluster=True, annot=False)
         plt.setp(consensusClustered.ax_heatmap.yaxis.get_majorticklabels(), rotation=0)
         plt.setp(consensusClustered_non_annt.ax_heatmap.yaxis.get_majorticklabels(), rotation=0)
