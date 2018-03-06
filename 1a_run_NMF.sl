@@ -4,4 +4,4 @@ export PATH=/cephfs/users/mbrown/PIPELINES/TOOLS/miniconda3/bin:$PATH
 source activate nmf_conda
 
 metrics=$m
-$metrics
+$metrics --run $run

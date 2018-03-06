@@ -22,7 +22,7 @@ clusterType='connectivity'
 iterations=$iter
 
 #number of desired clusters (optional, comment out if not needed)
-clusters=3
+clusters=$clust
 
 #full path to file of sample names in order of matrix, one name per line (optional, comment out if not needed)
 colNames=$c
@@ -104,7 +104,7 @@ echo $metric
 for i in $( seq 1 $numRuns);
 do
 	echo "Executing run number "$i
-	sbatch -c $cores --mem=$mem -J "NMF_run_"$i -o "NMF_run_"$i".log" --export=m="$metric" $spath'/1a_run_NMF.sl';
+	sbatch -c $cores --mem=$mem -J "NMF_run_"$i -o "NMF_run_"$i".log" --export=m="$metric",run="$i" $spath'/1a_run_NMF.sl';
 	sleep 4
 done
 

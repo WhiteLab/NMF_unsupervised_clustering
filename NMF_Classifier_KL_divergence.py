@@ -165,6 +165,7 @@ if __name__ == '__main__':
     parser.add_argument('--rowNames', default='noYLabels', dest='rowNames', type=str,
                         help='full path to file of feature/attribute names in order of matrix, one name per line')
     parser.add_argument('--output', default=os.getcwd(), dest='outPath', type=str, help='full path to output directory')
+    parser.add_argument('--run', default=os.getcwd(), dest='run', type=str, help='run number')
     args = parser.parse_args()
 
     # creates paths to result output directories
@@ -188,7 +189,8 @@ if __name__ == '__main__':
     if os.path.isdir(statPath) is False:
         os.mkdir(statPath)
 
-    uniqueName = strftime("%Y-%m-%d_%H:%M:%S", gmtime())
+    # uniqueName = strftime("%Y-%m-%d_%H:%M:%S", gmtime())
+    uniqueName = args.run
     observed, predicted, k, nrows, mcols, W, H = matrixInitialization(inputMatrix=args.matrixFile, k=args.kclusters)
 
     qualityApprox = []
