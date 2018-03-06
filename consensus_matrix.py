@@ -98,6 +98,9 @@ def visualizeConsensus(consensusMat, connectivityMatrices, clusters, colNames, s
                 clusters) + '.' + suffix)
         consensusClustered_non_annt.savefig(str(matrixPath) + 'non_annotated_consensus_Matrix_over_' + str(
             len(connectivityMatrices)) + '_runs_at_k=' + str(clusters) + '.' + suffix)
+        df_ordered_by_clust = dataframe.reindex(xaxis)
+        df_ordered_by_clust.to_csv(str(matrixPath + 'consensus_matrix_table.txt'), sep="\t")
+        dataframe.to_csv(str(matrixPath + 'consensus_matrix_table_TEST.txt'), sep="\t")
 
 
 if __name__ == '__main__':
