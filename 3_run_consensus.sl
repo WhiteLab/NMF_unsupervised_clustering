@@ -13,4 +13,4 @@ suffix=$s
 
 #run consensus matrix
 echo "Running consensus matrix..."
-python $spath/consensus_matrix.py -input $outputDirectory/connectivity_matrix/paths_to_connectivity_matrices_to_analyze.txt $connectivityParams --suffix $suffix
+python $spath/consensus_matrix.py -input $outputDirectory/connectivity_matrix/paths_to_connectivity_matrices_to_analyze.txt $connectivityParams --suffix $suffix > test.txt
