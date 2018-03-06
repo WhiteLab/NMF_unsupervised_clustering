@@ -29,13 +29,12 @@ fi
 #run connectivity
 filesToRun=$outputDirectory'matrixH/*'
 echo $filesToRun
-numFiles=${#filesToRun[@]}
 n=1
 echo $connectivityParams > $outputDirectory'conn_params.txt'
 for matrices in $filesToRun;
 do
 	echo "Building connectivity matrix for "$matrices
-    sbatch -c $cores --mem=$mem -J "connectivity_run_"$n"_"$numFiles -o "connectivity_run_"$n"_"$numFiles".log" --export=m="$matrices",connParams="$connectivityParams",p="$spath" $spath'/2a_run_connectivity.sl';
+    sbatch -c $cores --mem=$mem -J "connectivity_run_"$n -o "connectivity_run_"$n".log" --export=m="$matrices",connParams="$connectivityParams",p="$spath" $spath'/2a_run_connectivity.sl';
     ((n++))
 done
 
