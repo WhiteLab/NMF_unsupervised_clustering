@@ -50,6 +50,7 @@ def visualizeConsensus(consensusMat, connectivityMatrices, clusters, colNames, s
     if colNames == 'noXLabels':
         # put concensus matrix into dataframe to build hierarchical clustermap
         dataframe = pd.DataFrame(data=consensusMat)
+        dataframe.to_csv(str(matrixPath + 'consensus_matrix_table.txt'), sep="\t")
         # clusters by columns and rows and annotates probablility a particular sample clusters together
         # cluster distance is meausred by average Euclidean Distance in seaborn for hierarchical clustering
         consensusClustered = sns.clustermap(dataframe, col_cluster=True, row_cluster=True, annot=True)
@@ -65,6 +66,7 @@ def visualizeConsensus(consensusMat, connectivityMatrices, clusters, colNames, s
                 sampleNames.append(line.rstrip('\n'))
         # put concensus matrix into dataframe to build hierarchical clustermap
         dataframe = pd.DataFrame(data=consensusMat, index=sampleNames, columns=sampleNames)
+        dataframe.to_csv(str(matrixPath + 'consensus_matrix_table.txt'), sep="\t")
         # clusters by columns and rows and annotates probablility a particular sample clusters together
         # cluster distance is meausred by average Euclidean Distance in seaborn for hierarchical clustering
         consensusClustered = sns.clustermap(dataframe, col_cluster=True, row_cluster=True, annot=True)
