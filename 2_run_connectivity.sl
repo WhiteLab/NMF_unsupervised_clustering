@@ -30,7 +30,7 @@ fi
 filesToRun=$outputDirectory'matrixH/*'
 echo $filesToRun
 n=1
-echo $connectivityParams > $outputDirectory'conn_params.txt'
+# echo $connectivityParams > $outputDirectory'conn_params.txt'
 for matrices in $filesToRun;
 do
 	echo "Building connectivity matrix for "$matrices
@@ -39,3 +39,4 @@ do
     python $spath/connectivity_matrix.py -input $matrices$connectivityParams
 done
 
+python $spath/consensus_matrix.py -input $outputDirectory'connectivity_matrix/paths_to_connectivity_matrices_to_analyze.txt'$connectivityParams

@@ -238,3 +238,19 @@ if __name__ == '__main__':
         for z in range(0, len(predicted[0]) - 1):
             predictedMatrix.write(str(predicted[x][z]) + '\t')
         predictedMatrix.write(str(predicted[x][len(predicted[0]) - 1]) + '\n')
+
+    # TESTING metagene extractions
+    meta_profile = {}
+    genes = []
+    gene_out = open(args.outPath + '/top_genes_k' + args.kclusters + '_' + uniqueName + '.txt', 'w')
+    with open(args.rowNames) as indiv_genes:
+        for line in indiv_genes:
+            genes.append(line.rstrip())
+    for metagene in range(0, int(args.kclusters)):
+        genes_meta= dict(zip(genes, W[:, metagene]))
+        gene_out.write("Expression profile for metagene: " + str(metagene))
+        # for key, value in sorted(genes_meta.iteritems(), key=lambda (gene, expression): (expression, gene),
+        #                          reverse=True)[:20]:
+        for key, value in sorted(genes_meta.iteritems(), key=lambda gene_expression: gene_expression[1] + gene_expression[0],
+                                 reverse=True)[:20]:
+            gene_out.write("%s: %s" % (key, value))
