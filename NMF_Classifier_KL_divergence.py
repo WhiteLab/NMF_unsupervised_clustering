@@ -242,7 +242,7 @@ if __name__ == '__main__':
     # TESTING metagene extractions
     meta_profile = {}
     genes = []
-    gene_out = open(args.outPath + '/top_genes_k' + args.kclusters + '_' + uniqueName + '.txt', 'w')
+    gene_out = open(str(args.outPath) + '/top_genes_k' + str(args.kclusters) + '_' + str(uniqueName) + '.txt', 'w')
     with open(args.rowNames) as indiv_genes:
         for line in indiv_genes:
             genes.append(line.rstrip())
