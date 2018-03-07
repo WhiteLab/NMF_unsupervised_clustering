@@ -6,6 +6,7 @@ source activate nmf_conda
 spath=$p
 outputDirectory=$o
 colNames=$c
+suffix=$s
 connectivityParams=''
 #sets output directory for results
 if [[ -v outputDirectory ]]
@@ -33,4 +34,4 @@ do
     python $spath/connectivity_matrix.py -input $matrices$connectivityParams
 done
 
-python $spath/consensus_matrix.py -input $outputDirectory'connectivity_matrix/paths_to_connectivity_matrices_to_analyze.txt'$connectivityParams
+python $spath/consensus_matrix.py -input $outputDirectory'connectivity_matrix/paths_to_connectivity_matrices_to_analyze.txt'$connectivityParams --suffix $suffix
