@@ -26,7 +26,7 @@ fi
 
 #run connectivity
 filesToRun=$outputDirectory'matrixH/*'
-echo $filesToRun
+#echo $filesToRun
 # echo $connectivityParams > $outputDirectory'conn_params.txt'
 for matrices in $filesToRun;
 do
