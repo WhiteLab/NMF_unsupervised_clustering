@@ -13,6 +13,7 @@ for line in open(sys.argv[1]):
     num_k = int(c_info[1])
     if num_k not in c_dict:
         c_dict[num_k] = []
+        sys.stdout.write('Processing files for cluster ' + str(num_k) + '\n')
     next(cur)
     next(cur)
     min_k = next(cur)
