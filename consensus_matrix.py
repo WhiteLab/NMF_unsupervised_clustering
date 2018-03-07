@@ -1,11 +1,11 @@
 import argparse
-import os
-from matplotlib import use
-use('Agg')
+import
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import seaborn as sns
+from matplotlib import use
+use('Agg')
 
 
 def readMatrices(inputFile):

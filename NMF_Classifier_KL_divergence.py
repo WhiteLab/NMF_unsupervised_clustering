@@ -174,6 +174,7 @@ if __name__ == '__main__':
     vPath = str(args.outPath) + 'matrixV/'
     visPath = str(args.outPath) + 'visualizations/'
     statPath = str(args.outPath) + 'statistics/'
+    genesPath = str(args.outPath) + '/gene_lists/'
 
     # if output directory does not exist yet, create it
     if not os.path.isdir(args.outPath):
@@ -188,6 +189,8 @@ if __name__ == '__main__':
         os.mkdir(visPath)
     if os.path.isdir(statPath) is False:
         os.mkdir(statPath)
+    if os.path.isdir(genesPath) is False:
+        os.mkdir(genesPath)
 
     # uniqueName = strftime("%Y-%m-%d_%H:%M:%S", gmtime())
     uniqueName = args.run
@@ -242,7 +245,7 @@ if __name__ == '__main__':
     # TESTING metagene extractions
     meta_profile = {}
     genes = []
-    gene_out = open(str(args.outPath) + '/top_genes_k' + str(args.kclusters) + '_' + str(uniqueName) + '.txt', 'w')
+    gene_out = open(genesPath + '/top_genes_k' + str(args.kclusters) + '_' + str(uniqueName) + '.txt', 'w')
     with open(args.rowNames) as indiv_genes:
         for line in indiv_genes:
             genes.append(line.rstrip())
