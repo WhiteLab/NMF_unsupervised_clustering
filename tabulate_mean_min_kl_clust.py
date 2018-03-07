@@ -10,7 +10,7 @@ for line in open(sys.argv[1]):
     next(cur)
     cnum = next(cur)
     c_info = cnum.rstrip('\n').split()
-    num_k = c_info[1]
+    num_k = int(c_info[1])
     if num_k not in c_dict:
         c_dict[num_k] = []
     next(cur)
@@ -21,5 +21,5 @@ for line in open(sys.argv[1]):
     cur.close()
 
 print('Cluster\tmin KL')
-for k in c_dict:
-    print(k + '\t' + str(mean(c_dict[k])))
+for k in sorted(c_dict):
+    print(str(k) + '\t' + str(mean(c_dict[k])))
