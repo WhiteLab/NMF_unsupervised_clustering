@@ -251,6 +251,8 @@ if __name__ == '__main__':
         gene_out.write("Expression profile for metagene: " + str(metagene))
         # for key, value in sorted(genes_meta.iteritems(), key=lambda (gene, expression): (expression, gene),
         #                          reverse=True)[:20]:
-        for key, value in sorted(genes_meta.items(), key=lambda gene_expression: gene_expression[1] + gene_expression[0],
-                                 reverse=True)[:20]:
+        sorted_genes = [(key, genes_meta[key]) for key in sorted(genes_meta, key=genes_meta.get, reverse=True)]
+        for key, value in sorted_genes[:20]:
+        #for key, value in sorted(genes_meta.items(), key=lambda gene_expression: (gene_expression[1],
+        #    gene_expression[0]), reverse=True)[:20]:
             gene_out.write("%s: %s" % (key, value))
