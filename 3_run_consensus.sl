@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 
-#SBATCH -c 8
-#SBATCH --mem 4G
+#SBATCH -c 2
+#SBATCH --mem 2G
 export PATH=/cephfs/users/mbrown/PIPELINES/TOOLS/miniconda3/bin:$PATH
 source activate nmf_conda
 
