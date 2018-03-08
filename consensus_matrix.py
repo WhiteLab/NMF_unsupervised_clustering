@@ -48,7 +48,7 @@ def buildConsensus(connectivityMatrices, consensusMat):
 
 def visualizeConsensus(consensusMat, connectivityMatrices, clusters, colNames, suffix):
     plt.rcParams['font.size'] = '8'
-    # plt.rcParams['pdf.fonttype'] = 42
+    plt.rcParams['pdf.fonttype'] = 42
     if colNames == 'noXLabels':
         # put concensus matrix into dataframe to build hierarchical clustermap
         dataframe = pd.DataFrame(data=consensusMat)
